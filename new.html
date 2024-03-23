@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Display Page</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" bgcolor="FEC7B4">
+   <center> <h2 style="color: 43766C;">PETS YOU CAN ADOPT</h2></center>
+    <div ng-repeat="item in items" class="data-box">
+        <form ng-submit="interested(item.breed_id, item.customer_id)">
+            <p><strong>ID:</strong> {{item.breed_id}}</p>
+            <p><strong>Breed Name:</strong> {{item.breed_name}}</p>
+            <p><strong>Customer id:</strong> {{item.customer_id}}<button type="submit" class="interested-button" >INTERESTED</button></p>
+            <p><strong>Origin Country:</strong> {{item.origin_country}}</p>
+        </form>
+    </div>
+    <script>
+        angular.module('myApp', []).controller('myCtrl', function($scope, $http, $location) {
+            $http.get('/api/items').then(function(response) {
+                $scope.items = response.data;
+            });
+
+            $scope.interested = function(breedId, customerId) {
+                // Send an HTTP request to your server with both breedId and customerId data
+                $http.post('/api/interested', { breed_id: breedId, customer_id: customerId })
+                    .then(function(response) {
+                        console.log('Interest sent successfully');
+                        // Redirect to the 're.html' page after successful interest submission
+                        window.location.href = '/re';
+                    })
+                    .catch(function(error) {
+                        console.error('Error sending interest:', error);
+                        // Handle error on the client side (e.g., show an error message to the user)
+                    });
+            };
+        });
+    </script>
+</body>
+</html>

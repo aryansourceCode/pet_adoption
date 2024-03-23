@@ -1,0 +1,47 @@
+body{
+    background-color:  #dddbcb;
+    background-size: cover;
+}
+#login{
+    margin-top: 150px;
+    margin-left: 40px;
+    height: 500px;
+    width:500px;
+    background-color: black;
+
+}
+#a{
+    color:white;
+
+}
+h3{
+    color:white,
+}
+select{
+    width:400px;
+    height:30px;
+    border-radius:25px;
+    background-color: #E5F4E3;
+}
+
+input{
+    width:400px;
+    height:30px;
+    border-radius:25px;
+    background-color: #E5F4E3;
+    text-align: center;
+}
+input::placeholder{
+    text-align: center;
+
+}
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
